@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const app = express();
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
@@ -14,6 +15,7 @@ const cookieParser = require("cookie-parser");
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(cors({ origin: true, credentials: true }));
 mongoose.set('strictQuery', false);
 
 mongoose
