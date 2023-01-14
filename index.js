@@ -46,6 +46,6 @@ app.use("/api/post", postRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/cat", categoryRoute);
 
-app.listen(process.env.PORT, () => {
-  console.log("listening on port " + process.env.PORT || 5000);
+app.listen(process.env.PORT || 10000, () => {
+  console.log("listening on port " + process.env.PORT || 10000);
 });
