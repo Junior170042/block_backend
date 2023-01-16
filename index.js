@@ -15,7 +15,7 @@ const cookieParser = require("cookie-parser");
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 mongoose.set('strictQuery', false);
 
 mongoose
