@@ -72,7 +72,7 @@ router.post("/token", async (req, res) => {
       } else {
         const user = await User.findById(decodedToken.id);
         if (user) {
-          res.json({ status: true, user });
+          res.json({ status: true, user: user });
 
         }
         else {
