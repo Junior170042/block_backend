@@ -8,23 +8,17 @@ const userRoute = require("./routes/user");
 const postRoute = require("./routes/post");
 const categoryRoute = require("./routes/category");
 const path = require("path");
-const mongoose = require("mongoose");
 const multer = require('multer');
 const cookieParser = require("cookie-parser");
+const corsOptions = require("./config/CorsOptions");
+const Connect = require("./config/Connection");
 
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors({ origin: true, credentials: true }));
-mongoose.set('strictQuery', false);
+app.use(cors(corsOptions));
+Connect()
 
-mongoose
-  .connect(process.env.DB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(console.log("Connection succed"))
-  .catch((err) => console.log(err));
 
 
 //Upload file fron users
