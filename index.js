@@ -10,13 +10,13 @@ const categoryRoute = require("./routes/category");
 const path = require("path");
 const multer = require('multer');
 const cookieParser = require("cookie-parser");
-const corsOptions = require("./config/CorsOptions");
+const optionsCors = require("./config/CorsOptions");
 const Connect = require("./config/Connection");
 
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors(corsOptions));
+app.use(cors(optionsCors));
 Connect()
 
 

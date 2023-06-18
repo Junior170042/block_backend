@@ -1,4 +1,4 @@
-const corsOptions = {
+const optionsCors = {
     origin: (origin, callback) => {
         const whiteList = process.env.ORIGINS
 
@@ -9,4 +9,4 @@ const corsOptions = {
     credentials: true
 }
 
-module.exports = corsOptions;
+module.exports = optionsCors;
