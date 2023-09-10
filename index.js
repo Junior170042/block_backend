@@ -20,7 +20,7 @@ app.use(cors(optionsCors));
 
 //handling file upload
 const fileUpload = require('express-fileupload');
-app.use(fileUpload({ useTempFiles: true }));
+app.use(fileUpload());
 
 
 Connect()
