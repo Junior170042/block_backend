@@ -114,8 +114,7 @@ router.post("/upload/file", function (req, res) {
 
     cloudinary.uploader.upload(url,
         {
-            public_id: Date.now() + req.body.name,
-            folder: 'post-images'
+            public_id: Date.now() + req.body.name
         },
         function (error, result) {
             if (error) {
