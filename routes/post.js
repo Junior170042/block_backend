@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Post = require("../models/posts");
-const cloudinary = require('cloudinary');
+const cloudinary = require('cloudinary').v2;
 //Ad new post with
 router.post("/", async (req, res) => {
     const newPost = new Post(req.body);
@@ -112,8 +112,11 @@ router.post("/upload/file", function (req, res) {
         api_secret: process.env.CLOUD_SECRET_KEY
     });
 
-    cloudinary.v2.uploader.upload(url,
-        { public_id: Date.now() + req.body.name },
+    cloudinary.uploader.upload(url,
+        {
+            public_id: Date.now() + req.body.name,
+            folder: 'post-images'
+        },
         function (error, result) {
             if (error) {
 
