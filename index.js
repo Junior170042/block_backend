@@ -17,24 +17,13 @@ app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors(optionsCors));
+
+//handling file upload
+const fileUpload = require('express-fileupload');
+app.use(fileUpload({ useTempFiles: true }));
+
+
 Connect()
-
-
-
-//Upload file fron users
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "images")
-  },
-  filename: (req, file, cb) => {
-    cb(null, req.body.name)
-  }
-})
-
-const uploadFile = multer({ storage: storage });
-app.post('/api/upload', uploadFile.single("file"), (req, res) => {
-  res.status(200).json("File is upload successfully")
-})
 
 app.use(cookieParser());
 app.use("/api/user", userRoute);

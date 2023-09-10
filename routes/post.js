@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Post = require("../models/posts");
-
+const cloudinary = require('cloudinary');
 //Ad new post with
 router.post("/", async (req, res) => {
     const newPost = new Post(req.body);
@@ -99,5 +99,30 @@ router.get("/:id", async (req, res) => {
         res.status(404).json(error);
     }
 });
+
+
+//upload file to cloud storage
+
+router.post("/upload/file", function (req, res) {
+    const url = req.files.image.tempFilePath
+
+    cloudinary.config({
+        cloud_name: process.env.CLOUD_NAME,
+        api_key: process.env.CLOUD_API_KEY,
+        api_secret: process.env.CLOUD_SECRET_KEY
+    });
+
+    cloudinary.v2.uploader.upload(url,
+        { public_id: Date.now() + req.body.name },
+        function (error, result) {
+            if (error) {
+
+                return res.status(404).json({ error: error })
+            } else {
+                return res.status(200).json({ url: result.secure_url })
+            }
+        });
+
+})
 
 module.exports = router;
