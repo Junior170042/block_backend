@@ -105,7 +105,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/upload/file", function (req, res) {
     const url = req.files.image.tempFilePath
-
+    console.log(req.files.image)
     cloudinary.config({
         cloud_name: process.env.CLOUD_NAME,
         api_key: process.env.CLOUD_API_KEY,
