@@ -110,11 +110,11 @@ router.post("/upload/file", function (req, res) {
         api_key: process.env.CLOUD_API_KEY,
         api_secret: process.env.CLOUD_SECRET_KEY
     });
-
+    const { type } = req.body
     cloudinary.uploader.upload(url,
         {
             public_id: Date.now() + req.body.name,
-            folder: "post-images"
+            folder: type === "postImage" ? "post-images" : "user-images"
         },
         function (error, result) {
             if (error) {

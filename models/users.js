@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema(
     picture: {
       type: String,
       default:
-        "user.png",
+        "https://res.cloudinary.com/djfasnazecypd4y/image/upload/v1694465905/user-images/inoyriqj7rlknzfwunyo.avif",
     },
   },
   { timestamps: true }
