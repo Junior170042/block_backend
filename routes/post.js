@@ -104,8 +104,7 @@ router.get("/:id", async (req, res) => {
 //upload file to cloud storage
 
 router.post("/upload/file", function (req, res) {
-    const url = req.files.image.tempFilePath
-    console.log(req.files.image)
+    const url = req.files.image.tempFilePath;
     cloudinary.config({
         cloud_name: process.env.CLOUD_NAME,
         api_key: process.env.CLOUD_API_KEY,
@@ -114,11 +113,12 @@ router.post("/upload/file", function (req, res) {
 
     cloudinary.uploader.upload(url,
         {
-            public_id: Date.now() + req.body.name
+            public_id: Date.now() + req.body.name,
+            folder: "post-images"
         },
         function (error, result) {
             if (error) {
-
+                console.log(error)
                 return res.status(404).json({ error: error })
             } else {
                 return res.status(200).json({ url: result.secure_url })
