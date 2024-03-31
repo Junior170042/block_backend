@@ -8,7 +8,6 @@ const userRoute = require("./routes/user");
 const postRoute = require("./routes/post");
 const categoryRoute = require("./routes/category");
 const path = require("path");
-const multer = require('multer');
 const cookieParser = require("cookie-parser");
 const optionsCors = require("./config/CorsOptions");
 const Connect = require("./config/Connection");

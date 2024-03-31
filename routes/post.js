@@ -110,18 +110,25 @@ router.post("/upload/file", function (req, res) {
         api_key: process.env.CLOUD_API_KEY,
         api_secret: process.env.CLOUD_SECRET_KEY
     });
-    const { type } = req.body
+    const { type, fileRoutes } = req.body
+    let folder;
+    if (fileRoutes) {
+        folder = fileRoutes
+    } else if (type) {
+        folder = type === "postImage" ? "post-images" : "user-images"
+    }
+
     cloudinary.uploader.upload(url,
         {
             public_id: Date.now() + req.body.name,
-            folder: type === "postImage" ? "post-images" : "user-images"
+            folder: folder
         },
         function (error, result) {
             if (error) {
                 console.log(error)
                 return res.status(404).json({ error: error })
             } else {
-                return res.status(200).json({ url: result.secure_url })
+                return res.status(200).json({ url: result.secure_url, pubId: result.public_id })
             }
         });
 
