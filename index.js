@@ -15,7 +15,7 @@ const Connect = require("./config/Connection");
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors(optionsCors));
+app.use(cors());
 
 //handling file upload
 const fileUpload = require('express-fileupload');

@@ -111,6 +111,7 @@ router.post("/upload/file", function (req, res) {
         api_secret: process.env.CLOUD_SECRET_KEY
     });
     const { type, fileRoutes } = req.body
+
     let folder;
     if (fileRoutes) {
         folder = fileRoutes
